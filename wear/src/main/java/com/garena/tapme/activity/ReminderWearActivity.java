@@ -7,7 +7,8 @@ import android.widget.TextView;
 import com.garena.tapme.R;
 
 /**
- * Created by zhaocong on 10/28/14.
+ * @author zhaocong
+ * @since 29/10/14.
  */
 public class ReminderWearActivity extends Activity {
 
@@ -16,8 +17,8 @@ public class ReminderWearActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_wear);
-        final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
+        setContentView(R.layout.activity_reminder_wear);
+        final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_reminder_view_stub);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {

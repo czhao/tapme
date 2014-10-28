@@ -1,9 +1,13 @@
-package com.garena.tapme;
+package com.garena.tapme.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.garena.tapme.R;
+import com.garena.tapme.helper.DeviceBridge;
 
 
 public class HomeActivity extends Activity {
@@ -12,6 +16,16 @@ public class HomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //add on click listener
+        findViewById(R.id.tapme_btn_test_notification).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //push a notification to the wear app
+                DeviceBridge.getInstance().connectToWearDevice();
+            }
+        });
+
     }
 
 
@@ -28,9 +42,6 @@ public class HomeActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 }

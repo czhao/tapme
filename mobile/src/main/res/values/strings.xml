@@ -4,5 +4,6 @@
     <string name="app_name">TapMe</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="tapme_test_notification">Test Notification</string>
 
 </resources>
