@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">TapMe</string>
+    <string name="app_reminder_title">Reminder</string>
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
 
