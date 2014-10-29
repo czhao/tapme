@@ -5,5 +5,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="tapme_test_notification">Test Notification</string>
+    <string name="enable_activity_recognition">Enable Activity Recognition</string>
+    <string name="disable_activity_recognition">Disable Activity Recognition</string>
+    <string name="app_reminder_title">Reminder</string>
+    <string name="sitting_too_long">Hey man, leave your computer alone</string>
+    <string name="label_got_it">Got it</string>
 
 </resources>

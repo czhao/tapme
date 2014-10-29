@@ -15,4 +15,20 @@
         android:text="@string/tapme_test_notification"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tapme_btn_test_notification"
+        android:id="@+id/tapme_enable_activity_recognition"
+        android:text="@string/enable_activity_recognition"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tapme_enable_activity_recognition"
+        android:id="@+id/tapme_disable_activity_recognition"
+        android:text="@string/disable_activity_recognition"
+        />
+
 </RelativeLayout>
