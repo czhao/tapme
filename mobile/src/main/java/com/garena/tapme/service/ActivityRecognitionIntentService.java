@@ -57,7 +57,7 @@ public class ActivityRecognitionIntentService extends IntentService {
              * send it to an Activity or Service in a broadcast
              * Intent.
              */
-            AppLogger.i("current activity %s",activityName);
+            AppLogger.i("current activity %s with confidence %d",activityName,confidence);
 
             //if still
             if (activityType == DetectedActivity.STILL){
@@ -66,11 +66,9 @@ public class ActivityRecognitionIntentService extends IntentService {
                 AppLogger.i("current activity %d %d",period/ Const.MILL_TO_SECONDS,ActivityLogger.getStillPeriod());
                 if (period/ Const.MILL_TO_SECONDS >= ActivityLogger.getWarningPeriod()){
                     //fire a notification to the wear and generate a cool reminder
-                    sendReminder();
+                    sendReminder(period/Const.MILL_TO_SECONDS);
                 }
             }
-
-
         } else {
             /*
              * This implementation ignores intents that don't contain
@@ -103,7 +101,7 @@ public class ActivityRecognitionIntentService extends IntentService {
         return "unknown";
     }
 
-    private void sendReminder(){
+    private void sendReminder(long stillInSeconds){
         int notificationId = 1;
         // Build intent for notification content
         Intent viewIntent = new Intent(this, ResponseIntentService.class);
@@ -117,13 +115,13 @@ public class ActivityRecognitionIntentService extends IntentService {
                 new NotificationCompat.Action.Builder(R.drawable.ic_action_warning,
                         getString(R.string.label_got_it), viewPendingIntent).build();
 
-        long[] pattern = {0,100,100};
+        long[] pattern = {0,100,100,200};
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle(getString(R.string.app_reminder_title))
-                        .setContentText(getString(R.string.sitting_too_long))
+                        .setContentText(getString(R.string.sitting_too_long,stillInSeconds))
                         .setVibrate(pattern)
                         .extend(new NotificationCompat.WearableExtender().addAction(action))
                         .setContentIntent(viewPendingIntent);

@@ -8,7 +8,7 @@
     <string name="enable_activity_recognition">Enable Activity Recognition</string>
     <string name="disable_activity_recognition">Disable Activity Recognition</string>
     <string name="app_reminder_title">Reminder</string>
-    <string name="sitting_too_long">Hey man, leave your computer alone</string>
+    <string name="sitting_too_long">Hey, you have sit for $1%d seconds</string>
     <string name="label_got_it">Got it</string>
 
 </resources>
