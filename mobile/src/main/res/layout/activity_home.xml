@@ -8,27 +8,32 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".HomeActivity">
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tapme_btn_test_notification"
-        android:text="@string/tapme_test_notification"
+        android:id="@+id/wear_app_connect_status"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/connection_status_disconnected"
+        android:layout_marginTop="10dp"
         />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tapme_btn_test_notification"
-        android:id="@+id/tapme_enable_activity_recognition"
-        android:text="@string/enable_activity_recognition"
+        android:id="@+id/btn_adjust_timeout"
+        android:text="@string/label_adjust_timeout"
+        android:layout_below="@id/wear_app_connect_status"
+        android:layout_marginTop="20dp"
         />
 
-    <Button
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tapme_enable_activity_recognition"
-        android:id="@+id/tapme_disable_activity_recognition"
-        android:text="@string/disable_activity_recognition"
+        android:id="@+id/spinner_adjust_timeout"
+        android:layout_alignBottom="@id/btn_adjust_timeout"
+        android:layout_marginStart="30dp"
+        android:layout_toEndOf="@id/btn_adjust_timeout"
         />
 
 </RelativeLayout>

@@ -57,4 +57,8 @@ public class DeviceBridge {
           }).addApi(Wearable.API).build();
 
     }
+
+    public boolean isConnected(){
+        return mGoogleApiClient != null && mGoogleApiClient.isConnected();
+    }
 }

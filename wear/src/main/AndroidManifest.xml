@@ -23,12 +23,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".activity.ReminderWearActivity"
-            android:exported="true"
-            android:taskAffinity=""
-            android:theme="@android:style/Theme.DeviceDefault.Light" />
-
         <activity android:name=".activity.ConfirmUserActionActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light"
             android:launchMode="singleTop"
