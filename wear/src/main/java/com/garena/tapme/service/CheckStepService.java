@@ -19,6 +19,8 @@ import com.garena.tapme.helper.AppLogger;
 import com.garena.tapme.helper.TimeHelper;
 import com.garena.tapme.storage.AppSettings;
 
+import java.util.Random;
+
 /**
  * @author zhaocong
  * @since 11/1/14.
@@ -76,18 +78,40 @@ public class CheckStepService extends IntentService implements SensorEventListen
         PendingIntent viewPendingIntent =
                 PendingIntent.getActivity(this, 0, viewIntent, 0);
 
+
+        long[] pattern = {0,100,100,200,300};
+
+        //randomly pick the wording
+        Random randomGenerator = new Random();
+        int ram = randomGenerator.nextInt() % 3;
+        int reminderStringRes;
+        int backgroundRes = R.drawable.bg_android_studio;
+        switch (ram){
+            case 0:
+                reminderStringRes = R.string.label_time_for_walk;
+                break;
+            case 1:
+                reminderStringRes = R.string.label_drink_more_water;
+                backgroundRes = R.drawable.drinking_water;
+                break;
+            case 2:
+                reminderStringRes = R.string.label_rest_your_eye;
+                backgroundRes = R.drawable.trees;
+                break;
+            default:
+                reminderStringRes = R.string.label_time_for_walk;
+        }
+
         NotificationCompat.WearableExtender wearableExtender =
                 new NotificationCompat.WearableExtender()
                         .setHintHideIcon(true)
-                        .setBackground(BitmapFactory.decodeResource(getResources(),R.drawable.bg_android_studio));
-
-        long[] pattern = {0,100,100,200};
+                        .setBackground(BitmapFactory.decodeResource(getResources(),backgroundRes));
 
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_action_warning)
+                        .setSmallIcon(R.drawable.one_finger_tap)
                         .setContentTitle(getString(R.string.app_reminder_title))
-                        .setContentText(getString(R.string.label_time_for_walk))
+                        .setContentText(getString(reminderStringRes))
                         .setVibrate(pattern)
                         .extend(wearableExtender)
                         .setContentIntent(viewPendingIntent);

@@ -3,6 +3,7 @@ package com.garena.tapme.storage;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Pair;
+import com.garena.tapme.application.SystemConst;
 import com.garena.tapme.application.WearApplication;
 
 /**
@@ -16,6 +17,7 @@ public class AppSettings {
     private static final String ENABLE_STATUS = "status";
     private static final String STEP_COUNT_LAST_KNOWN = "step_count_last_known";
     private static final String STEP_COUNT_RECORD_TIMESTAMP = "step_count_record_time";
+    private static final String REMINDER_INTERVAL = "reminder_interval";
 
     private static SharedPreferences getStorage(){
         if (_storage == null){
@@ -45,6 +47,16 @@ public class AppSettings {
         int step = getStorage().getInt(STEP_COUNT_LAST_KNOWN,0);
         long time = getStorage().getLong(STEP_COUNT_RECORD_TIMESTAMP, 0l);
         return new Pair<Integer, Long>(step,time);
+    }
+
+    public static long getReminderInterval(){
+        return getStorage().getLong(REMINDER_INTERVAL, SystemConst.TIME_INTERVAL_MILLI_SECONDS);
+    }
+
+    public static void updateReminderInterval(long timeInterval){
+        SharedPreferences.Editor editor = getStorage().edit();
+        editor.putLong(REMINDER_INTERVAL, timeInterval);
+        editor.apply();
     }
 
 }

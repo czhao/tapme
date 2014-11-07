@@ -11,7 +11,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/tapme_icon"
         android:label="@string/app_name"
         android:name=".application.TapMeApplication"
         android:theme="@style/AppTheme" >
@@ -28,17 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <service
-            android:name=".service.ActivityRecognitionIntentService"
-            android:enabled="true"
-            android:exported="false"
-            />
-
-        <service android:name=".service.ResponseIntentService"
-            android:enabled="true"/>
-
     </application>
 
 </manifest>

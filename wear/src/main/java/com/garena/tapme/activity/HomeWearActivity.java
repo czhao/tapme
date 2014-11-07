@@ -3,23 +3,17 @@ package com.garena.tapme.activity;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.wearable.activity.ConfirmationActivity;
 import android.support.wearable.view.WatchViewStub;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import com.garena.tapme.R;
 import com.garena.tapme.application.SystemConst;
 import com.garena.tapme.helper.AppLogger;
 import com.garena.tapme.storage.AppSettings;
-
-import java.util.List;
 
 public class HomeWearActivity extends Activity {
 
@@ -59,14 +53,14 @@ public class HomeWearActivity extends Activity {
     private void activateTracking(boolean isEnableAction) {
         //init a pending intent service to activate tracking
         PendingIntent trackTask = PendingIntent.getService(this, 0,
-                new Intent("com.garena.tapme.action.tracking"),
+                new Intent(SystemConst.TRACKING_INTENT_FILTER),
                 PendingIntent.FLAG_UPDATE_CURRENT);
         AppSettings.updateTracking(isEnableAction);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         if (isEnableAction) {
             AppLogger.i("tracking enabled");
-            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + SystemConst.TIME_INTERVAL_MILLI_SECONDS,
-                    SystemConst.TIME_INTERVAL_MILLI_SECONDS, trackTask);
+            alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + AppSettings.getReminderInterval(),
+                    AppSettings.getReminderInterval(), trackTask);
         }else{
             AppLogger.i("tracking disabled");
             alarmManager.cancel(trackTask);

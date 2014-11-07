@@ -5,6 +5,9 @@ import android.os.Bundle;
 import com.garena.tapme.application.TapMeApplication;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
 
 /**
@@ -12,6 +15,11 @@ import com.google.android.gms.wearable.Wearable;
  * @since  29/10/14.
  */
 public class DeviceBridge {
+
+
+    public interface ConnectionCallback{
+        public void onConnectionStatusChange();
+    }
 
     public static DeviceBridge getInstance(){
         if (_mInstance == null){
@@ -29,12 +37,19 @@ public class DeviceBridge {
 
     private GoogleApiClient mGoogleApiClient;
 
+    private ConnectionCallback mCallback;
+
     private DeviceBridge() {
         establishConnection();
     }
 
-    public void connectToWearDevice(){
+    public void connectToWearDevice(ConnectionCallback callback){
         mGoogleApiClient.connect();
+        mCallback = callback;
+    }
+
+    public void dismissCallback(){
+        mCallback = null;
     }
 
     private void establishConnection(){
@@ -43,11 +58,16 @@ public class DeviceBridge {
               @Override
               public void onConnected(Bundle bundle) {
                   AppLogger.i("Connection is ok");
+                  if (mCallback != null){
+                      mCallback.onConnectionStatusChange();
+                  }
               }
 
               @Override
               public void onConnectionSuspended(int i) {
-
+                  if (mCallback != null){
+                      mCallback.onConnectionStatusChange();
+                  }
               }
           }).addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
               @Override
@@ -60,5 +80,13 @@ public class DeviceBridge {
 
     public boolean isConnected(){
         return mGoogleApiClient != null && mGoogleApiClient.isConnected();
+    }
+
+    public boolean sendData(PutDataRequest dataRequest){
+        if (!mGoogleApiClient.isConnected())
+            return false;
+        PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi
+                .putDataItem(mGoogleApiClient, dataRequest);
+        return true;
     }
 }

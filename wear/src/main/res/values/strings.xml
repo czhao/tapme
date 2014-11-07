@@ -11,5 +11,7 @@
     <string name="hello_square">Hello Square World!</string>
     <string name="label_got_it">Ok, got it</string>
     <string name="label_time_for_walk">Time for a little walk</string>
+    <string name="label_drink_more_water">Drink some water :p</string>
+    <string name="label_rest_your_eye">Look at the trees</string>
 
 </resources>

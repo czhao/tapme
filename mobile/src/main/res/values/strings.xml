@@ -14,7 +14,11 @@
 
     <string-array name="time_interval_array">
         <item>10 minutes</item>
+        <item>20 minutes</item>
         <item>30 minutes</item>
+        <item>40 minutes</item>
+        <item>50 minutes</item>
+        <item>60 minutes</item>
     </string-array>
 
 </resources>
