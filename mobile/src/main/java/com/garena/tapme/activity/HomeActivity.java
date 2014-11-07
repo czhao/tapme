@@ -30,20 +30,22 @@ public class HomeActivity extends Activity implements DeviceBridge.ConnectionCal
 
     @AfterViews
     void initUI(){
-        timeoutAdjustSpinner.setAdapter(ArrayAdapter.createFromResource(this,R.array.time_interval_array,android.R.layout.simple_spinner_item));
+        timeoutAdjustSpinner.setAdapter(ArrayAdapter.createFromResource(this,
+                R.array.time_interval_array,android.R.layout.simple_spinner_item));
 
         //set the default value
         long currentInterval = AppSettings.getReminderInterval();
         int position = (int)(currentInterval / (10 * 60 * Const.MILL_TO_SECONDS));
         timeoutAdjustSpinner.setSelection(position-1);
-        timeoutAdjustSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        timeoutAdjustSpinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 AppLogger.i("item selected %d",position);
                 PutDataMapRequest dataMap = PutDataMapRequest.create("/time_interval");
                 //convert to million seconds
-                //long timeInterval = (position+1) * 10 * 60 * Const.MILL_TO_SECONDS;
-                long timeInterval = 20 * Const.MILL_TO_SECONDS;
+                long timeInterval = (position+1) * 10 * 60 * Const.MILL_TO_SECONDS;
+                //long timeInterval = 20 * Const.MILL_TO_SECONDS;
                 dataMap.getDataMap().putLong(Const.SHARE_KEY.SHARED_KEY_TIME_INTERVAL, timeInterval);
                 PutDataRequest request = dataMap.asPutDataRequest();
                 DeviceBridge.getInstance().sendData(request);
