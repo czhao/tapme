@@ -13,5 +13,6 @@
     <string name="label_time_for_walk">Time for a little walk</string>
     <string name="label_drink_more_water">Drink some water :p</string>
     <string name="label_rest_your_eye">Look at the trees</string>
+    <string name="s_label_minutes">%1$d MINS</string>
 
 </resources>

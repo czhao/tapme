@@ -7,10 +7,20 @@
     tools:context=".HomeWearActivity"
     tools:deviceIds="wear_square">
 
+    <TextView
+        android:id="@+id/storage_interval_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        style="@style/label_time_display"
+        />
+
     <Button
         android:id="@+id/btn_enable_tracking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/label_enable_tracking" />
 
 </LinearLayout>

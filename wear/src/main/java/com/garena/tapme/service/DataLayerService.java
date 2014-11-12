@@ -28,6 +28,7 @@ public class DataLayerService extends WearableListenerService{
                 long timeInterval = dataMap.getLong(SystemConst.SHARE_KEY.SHARED_KEY_TIME_INTERVAL);
                 //update the local storage
                 AppSettings.updateReminderInterval(timeInterval);
+                //TODO inform the UI if any change applies
                 if (AppSettings.isTrackingEnabled()){
                     //restart the service
                     AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);

@@ -10,6 +10,7 @@ import android.support.wearable.activity.ConfirmationActivity;
 import android.support.wearable.view.WatchViewStub;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import com.garena.tapme.R;
 import com.garena.tapme.application.SystemConst;
 import com.garena.tapme.helper.AppLogger;
@@ -27,6 +28,7 @@ public class HomeWearActivity extends Activity {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 initUI();
+
                 findViewById(R.id.btn_enable_tracking).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -40,6 +42,11 @@ public class HomeWearActivity extends Activity {
                         initUI();
                     }
                 });
+
+                //read the storage and display the current timeout
+                long timeInterval = AppSettings.getReminderInterval();
+                TextView currentTimeLabel =  (TextView)findViewById(R.id.storage_interval_time);
+                currentTimeLabel.setText(getString(R.string.s_label_minutes,timeInterval/(60*SystemConst.MILL_TO_SECONDS)));
             }
         });
     }
