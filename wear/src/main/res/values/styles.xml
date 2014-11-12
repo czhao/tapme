@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="label_time_display">
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textColor">#ff054339</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:capitalize">characters</item>
+    </style>
+
+
+</resources>
